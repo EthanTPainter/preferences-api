@@ -51,7 +51,7 @@ async fn main() {
 async fn get_clients(
   Query(query): Query<ClientQuery>
 ) -> (StatusCode, Json<ClientPaginatedResponse>) {
-  println!("Query parameters for GET /clients: limit ({}), offset ({})", query.limit, query.offset);
+  println!("Query parameters for GET /clients: limit ({}), offset ({})", query.limit.unwrap_or(10), query.offset.unwrap_or(0));
   (StatusCode::OK, Json(ClientPaginatedResponse {
     count: 0,
     limit: 10,
